@@ -5,7 +5,7 @@
     <title>jQuery ajax example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/1139822/Leaflet/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
 
     <style>
       body {
@@ -14,7 +14,7 @@
     </style>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	
   </head>
@@ -24,14 +24,13 @@
 	<div id="map" style="width: 600px; height: 400px">
 		</div>
  
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="https://dl.dropboxusercontent.com/u/1139822/Leaflet/dist/leaflet-src.js"></script>
-    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.1.2"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
     <script>
   
 		$(document).ready(function (){
 
-		  var route = 'http://services.pca.state.mn.us/api/v1/surfacewater/monitoring-stations?stationType=LAKE&huc8=07010206&format=jsonp'
+		  var route = 'https://services.pca.state.mn.us/api/v1/surfacewater/monitoring-stations?stationType=LAKE&huc8=07010206&format=jsonp'
 
 		  $.ajax({	  
 			         type: 'GET',
@@ -45,7 +44,8 @@
 			  (function ($) {
 		 
 				// create the map and add the stamen layers
-				var layer = new L.StamenTileLayer("terrain"); // "toner" "terrain" or "watercolor"
+				var layer = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
 				
 				var map = new L.Map("map", {
 					center: new L.LatLng(45.1234, -93.03),
